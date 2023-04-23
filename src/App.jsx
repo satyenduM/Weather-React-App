@@ -50,21 +50,22 @@ function WeatherApp() {
       return Math.round(speed * 2.237);
     }
   }
-  function HourlyForecast({ hourlyForecast }){
+  function HourlyForecast({ hourlyForecast }) {
     return (
       <div className="flex flex-row justify-center items-center">
         {hourlyForecast.map((hour, index) => {
           return (
             <div key={index} className="flex flex-col justify-center items-center">
-              <p className="text-2xl">{convertTime(hour.dt)}</p>
-              <img src={API_ICON_URL + hour.weather[0].icon + '@2x.png'} alt="weather icon" className="w-16 h-16" />
-              <p className="text-2xl">{convertTemp(hour.temp)}°</p>
+              <p className="text-2xl">{convertTime(hour.dt)}</p> {/* Render time */}
+              <img src={API_ICON_URL + hour.weather[0].icon + '@2x.png'} alt="weather icon" className="w-16 h-16" /> {/* Render weather icon */}
+              <p className="text-2xl">{convertTemp(hour.temp)}°</p> {/* Render temperature */}
             </div>
           );
         })}
       </div>
     );
   }
+  
   useEffect(() => {
     setLoading(true);
     navigator.geolocation.getCurrentPosition(
