@@ -143,7 +143,7 @@ function WeatherApp() {
 
   return (
     <div className={getBackgroundClass() + ' min-h-screen flex flex-col justify-center items-center text-white font-bold'}>
-      <h1 className="text-3xl mb-4">{cityName ? cityName : 'Fetching Weather Data'}</h1>
+      <h1 className="text-5xl mb-4">{cityName ? cityName : 'Fetching Weather Data'}</h1>
       {loading && (
         <div className="oscillating-circles">
           <div className="circle"></div>
@@ -161,7 +161,7 @@ function WeatherApp() {
             />
             <div className="text-6xl">{convertTemp(temperature)}&deg;</div>
           </div>
-          <div className="text-2xl mt-4 rounded-md shadow-md p-4">{condition}</div>
+          <div className="text-xl mt-4 rounded-md shadow-md p-4">{condition}</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Feels like: {feelsLike}&deg;</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Humidity: {humidity}%</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Wind: {convertSpeed(windSpeed)} km/h {getWindDirection(windDirection)}</div>
