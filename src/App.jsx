@@ -162,7 +162,7 @@ function WeatherApp() {
             <div className="text-6xl">{convertTemp(temperature)}&deg;</div>
           </div>
           <div className="text-2xl mt-4 rounded-md shadow-md p-4">{condition}</div>
-          <div className="text-xl mt-4 rounded-md shadow-md p-4">Feels like: {convertTemp(temperafeelsLiketure)}&deg;</div>
+          <div className="text-xl mt-4 rounded-md shadow-md p-4">Feels like: {feelsLike}&deg;</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Humidity: {humidity}%</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Wind: {convertSpeed(windSpeed)} km/h {getWindDirection(windDirection)}</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Sunrise: {convertTime(sunriseTime)}</div>
