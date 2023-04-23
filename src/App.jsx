@@ -22,7 +22,7 @@ function WeatherApp() {
   const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
   const API_ICON_URL = 'https://openweathermap.org/img/wn/';
   function getWindDirection(degrees) {
-    const directions = ["N", "NE", "E", "SE", "↓", "SW", "W", "NW"];
+    const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
     const index = Math.round((degrees % 360) / 45);
     return directions[index];
   }
