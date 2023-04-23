@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWind } from "@fortawesome/free-solid-svg-icons";
 import './WeatherApp.css';
 
 function WeatherApp() {
@@ -14,6 +12,7 @@ function WeatherApp() {
   const [feelsLike, setFeelsLike] = useState('');
   const [humidity, setHumidity] = useState('');
   const [windSpeed, setWindSpeed] = useState('');
+  const [windDirection, setWindDirection] = useState('');
   const [sunriseTime, setSunriseTime] = useState('');
   const [sunsetTime, setSunsetTime] = useState('');
   const [isMetric, setIsMetric] = useState(true);
@@ -22,26 +21,11 @@ function WeatherApp() {
   const API_KEY = '9d08960a02b2f526e8962529e1c3f443';
   const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
   const API_ICON_URL = 'https://openweathermap.org/img/wn/';
-  const windDirection = () => {
-    const degree = wind.deg;
-    if (degree > 337.5 || degree <= 22.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 0 }} />;
-    } else if (degree > 22.5 && degree <= 67.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 45 }} />;
-    } else if (degree > 67.5 && degree <= 112.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 90 }} />;
-    } else if (degree > 112.5 && degree <= 157.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 135 }} />;
-    } else if (degree > 157.5 && degree <= 202.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 180 }} />;
-    } else if (degree > 202.5 && degree <= 247.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 225 }} />;
-    } else if (degree > 247.5 && degree <= 292.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 270 }} />;
-    } else if (degree > 292.5 && degree <= 337.5) {
-      return <FontAwesomeIcon icon={faWind} transform={{ rotate: 315 }} />;
-    }
-  };
+  function getWindDirection(degrees) {
+    const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+    const index = Math.round((degrees % 360) / 45);
+    return directions[index];
+  }
   function convertTime(unixTime) {
     const date = new Date(unixTime * 1000);
     const hours = date.getHours();
@@ -180,7 +164,7 @@ function WeatherApp() {
           <div className="text-2xl mt-4 rounded-md shadow-md p-4">{condition}</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Feels like: {feelsLike}&deg;</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Humidity: {humidity}%</div>
-          <div className="text-xl mt-4 rounded-md shadow-md p-4">Wind: {convertSpeed(windSpeed)} km/h {windDirection()}</div>
+          <div className="text-xl mt-4 rounded-md shadow-md p-4">Wind: {convertSpeed(windSpeed)} km/h {getWindDirection(windDirection)}</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Sunrise: {convertTime(sunriseTime)}</div>
           <div className="text-xl mt-4 rounded-md shadow-md p-4">Sunset: {convertTime(sunsetTime)}</div>
         </div>
