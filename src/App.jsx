@@ -143,7 +143,7 @@ function WeatherApp() {
   };
 
   return (
-    <div className={getBackgroundClass() + ' min-h-screen flex flex-col justify-center items-center text-black font-bold'}>
+    <div className={getBackgroundClass() + ' min-h-screen flex flex-col justify-center items-center text-white font-bold'}>
       <h1 className="text-5xl mb-4">{cityName ? cityName : 'Fetching Weather Data'}</h1>
       {loading && (
         <div className="oscillating-circles">
